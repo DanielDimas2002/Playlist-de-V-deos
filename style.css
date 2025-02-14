@@ -1,0 +1,85 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Garante que padding e border não aumentem o tamanho do elemento */
+    font-family: "Poppins", sans-serif;
+    border-radius: 5px; /* Aplica bordas arredondadas a todos os elementos */
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Mantém o conteúdo centralizado verticalmente */
+}
+
+.container {
+    display: flex;
+    gap: 15px; /* Espaçamento entre os elementos dentro do container */
+    margin: 20px 10px;
+    background-color: white;
+    padding: 10px;
+}
+
+.main-video-content {
+    display: flex;
+    flex-direction: column; /* Organiza os elementos verticalmente */
+    gap: 5px;
+    padding: 10px;
+    box-shadow: 0 1px 2px gray; /* Adiciona uma leve sombra ao bloco */
+}
+
+.main-video-content video {
+    width: 600px; /* Define a largura do vídeo principal */
+}
+
+.playlist {
+    display: flex;
+    flex-direction: column; /* Exibe os vídeos da playlist em coluna */
+    gap: 10px;
+    overflow: auto; /* Adiciona rolagem se a lista for muito longa */
+    max-height: 400px; /* Define altura máxima para a lista de vídeos */
+    padding: 2px;
+}
+
+/* Personaliza a barra de rolagem da playlist */
+.playlist::-webkit-scrollbar {
+    width: 6px;
+}
+
+.playlist::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: gray;
+}
+
+.playlist-video {
+    display: flex;
+    align-items: center; /* Alinha a miniatura e o título do vídeo */
+    gap: 5px;
+    padding: 5px;
+    box-shadow: 0 1px 2px gray;
+    margin-right: 5px;
+    cursor: pointer; /* Indica que o item é clicável */
+}
+
+/* Estilo para o vídeo que está sendo reproduzido */
+.active {
+    background-color: #3f3ff6;
+    color: white;
+}
+
+.playlist-video video {
+    width: 100px; /* Define o tamanho das miniaturas dos vídeos */
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column; /* Muda a organização dos elementos para uma única coluna */
+        margin-top: 60px;
+        height: -webkit-fill-available;
+    }
+    .container, .main-video-content video {
+        width: 100%; /* Ajusta a largura para ocupar toda a tela */
+    }
+}
