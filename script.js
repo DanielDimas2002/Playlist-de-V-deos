@@ -1,50 +1,51 @@
-import videos from "./videos.js";
+import videos from "./videos.js"; // Certifique-se de que a importação está correta
 
 function loadVideos() {
     const playlist_area = document.querySelector(".playlist");
 
+    if (!playlist_area) { 
+        console.error("Erro: Elemento .playlist não encontrado!");
+        return;
+    }
+
     videos.forEach((video, index) => {
         const div = document.createElement("div");
-        div.classList.add("playlist-video");
-        
-        // Define a classe "active" no primeiro vídeo automaticamente
-        if (index === 0) {
-            div.classList.add("active");
-        }
 
         div.innerHTML = `
-            <video src="${video.src}" muted></video>
-            <label class="playlist-video-info">${video.title}</label>
+            <div class="playlist-video ${index === 0 ? "active" : ""}">
+                <video src="${video.src}" muted></video>
+                <label class="playlist-video-info">${video.title}</label>
+            </div>
         `;
 
         playlist_area.appendChild(div);
     });
 
-    addOnClick(); // Corrigindo nome da função
+    addOnClick();
 }
 
 function addOnClick() {
-    const video_main = document.querySelector(".main-video-content video"); // Pegando apenas o <video>
-    const video_label = document.querySelector(".main-info"); // Pegando o <label>
+    const video_main = document.querySelector(".main-video-content video");
+    const video_info = document.querySelector(".main-info");
     const playlist_videos = document.querySelectorAll(".playlist-video");
 
     playlist_videos.forEach((item, i) => {
         if (i === 0) {
-            setVideo(video_main, video_label, item); // Define o primeiro vídeo como ativo
+            setVideo(video_main, video_info, item);
         }
 
         item.onclick = () => {
-            playlist_videos.forEach(video => video.classList.remove("active"));
+            playlist_videos.forEach((video) => video.classList.remove("active"));
             item.classList.add("active");
 
-            setVideo(video_main, video_label, item);
+            setVideo(video_main, video_info, item);
         };
     });
 }
 
-function setVideo(video_main, video_label, item) {
-    video_main.src = item.children[0].getAttribute("src"); // Atualiza o vídeo principal
-    video_label.innerHTML = item.children[1].innerHTML; // Atualiza o título abaixo do vídeo
+function setVideo(video_main, video_info, item) {
+    video_main.src = item.querySelector("video").getAttribute("src");
+    video_info.innerHTML = item.querySelector(".playlist-video-info").innerHTML;
 }
 
-loadVideos();
+document.addEventListener("DOMContentLoaded", loadVideos);

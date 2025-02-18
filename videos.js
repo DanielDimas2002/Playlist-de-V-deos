@@ -12,7 +12,23 @@ export default[
         title: "Roda gigante de Londres.",
     },
     {
-        src: "./video/Tartaruga.mp4",
+        src: "./videos/Tartaruga.mp4",
         title: "Tartaruga marinha."
+    },
+    {
+        src: "./videos/Arvores.mp4",
+        title: "Folhas de Outono."
+    },
+    {
+        src: "./videos/Cafe.mp4",
+        title: "Cafeteira."
+    },
+    {
+        src: "./videos/Girassois.mp4",
+        title: "Girassol."
+    },
+    {
+        src: "./videos/Oceano.mp4",
+        title: "Ondas do mar."
     },
 ]
